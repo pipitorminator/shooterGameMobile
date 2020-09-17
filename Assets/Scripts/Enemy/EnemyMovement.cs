@@ -8,22 +8,27 @@ public class EnemyMovement : MonoBehaviour
 {
     private Transform player;
     private NavMeshAgent nav;
-    private Animator animator;
+    private EnemyHealth enemyHealth;
+    private PlayerHealth playerHealth;
 
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     private void Start()
     {
         player = FindObjectOfType<PlayerMovement>().transform;
+        playerHealth = player.GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        nav.SetDestination(player.position);
+        if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
+        {
+            nav.SetDestination(player.position);
+        }
     }
 }

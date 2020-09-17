@@ -13,11 +13,13 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movement;
     private Rigidbody rb;
     private Animator animator;
+    private PlayerShooting playerShooting;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        playerShooting = GetComponentInChildren<PlayerShooting>();
     }
 
     private void FixedUpdate()
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         if (rot != Vector3.zero)
         {
             transform.rotation = Quaternion.LookRotation(rot);
+            playerShooting.Shoot();
         }
     }
 
