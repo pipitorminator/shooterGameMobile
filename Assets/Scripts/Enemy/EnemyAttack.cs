@@ -55,7 +55,6 @@ public class EnemyAttack : MonoBehaviour
     void Attack()
     {
         timer = 0;
-        Debug.Log(enemyHealth.currentHealth);
         if (enemyHealth.currentHealth > 0)
         {
             playerHealth.TakeDamage(damage, Vector3.zero);
