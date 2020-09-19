@@ -3,10 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class LevelController : MonoBehaviour
 {
     public static LevelController instance;
+
+    public Text scoreText;
+
+    private int score;
 
     public Animator gameOverCanvas;
 
@@ -25,5 +31,16 @@ public class LevelController : MonoBehaviour
     public void GameOver()
     {
         gameOverCanvas.SetTrigger("GameOver");
+    }
+
+    public void UpdateScore(int amount)
+    {
+        score += amount;
+        scoreText.text = "Pontos: " + score;
+    }
+
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class PlayerShooting : MonoBehaviour
 {
+    public AudioClip shootSound;
+    private AudioPlayer audioPlayer;
+
     private GameObject player;
     private PlayerHealth playerHealth;
 
@@ -32,11 +35,7 @@ public class PlayerShooting : MonoBehaviour
         gunLight = GetComponent<Light>();
         gunEffect = GetComponent<ParticleSystem>();
         bombImageText = bombImage.GetComponentInChildren<Text>();
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        audioPlayer = GetComponent<AudioPlayer>();
     }
 
     // Update is called once per frame
@@ -108,6 +107,8 @@ public class PlayerShooting : MonoBehaviour
         {
             return;
         }
+
+        audioPlayer.PlaySound(shootSound);
 
         timer = 0;
 

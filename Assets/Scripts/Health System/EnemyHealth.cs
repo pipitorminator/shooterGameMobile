@@ -9,11 +9,18 @@ public class EnemyHealth : Health
     public float sinkingSpeed = 2.5f;
     private bool isSinking;
 
+    public int scoreValue = 10;
+
     private ParticleSystem hitParticles;
     private Animator anim;
     private Rigidbody rb;
     private CapsuleCollider capsuleCollider;
     private NavMeshAgent navMeshAgent;
+
+    private AudioPlayer audioPlayer;
+    public AudioClip deathSound;
+    public AudioClip hurtSound;
+
 
     private void Awake()
     {
@@ -22,6 +29,7 @@ public class EnemyHealth : Health
         rb = GetComponent<Rigidbody>();
         capsuleCollider = GetComponent<CapsuleCollider>();
         navMeshAgent = GetComponent<NavMeshAgent>();
+        audioPlayer = GetComponent<AudioPlayer>();
     }
 
     // Start is called before the first frame update
@@ -48,8 +56,12 @@ public class EnemyHealth : Health
     {
         isDead = true;
 
+        audioPlayer.PlaySound(deathSound);
+
         capsuleCollider.isTrigger = true;
         anim.SetTrigger("Dead");
+
+        LevelController.instance.UpdateScore(scoreValue);
     }
 
     public void StartSinking()
@@ -67,6 +79,8 @@ public class EnemyHealth : Health
         {
             return;
         }
+
+        audioPlayer.PlaySound(hurtSound);
 
         currentHealth -= damage;
 

@@ -10,11 +10,13 @@ public class EnemyMovement : MonoBehaviour
     private NavMeshAgent nav;
     private EnemyHealth enemyHealth;
     private PlayerHealth playerHealth;
+    private Animator anim;
 
     private void Awake()
     {
         nav = GetComponent<NavMeshAgent>();
         enemyHealth = GetComponent<EnemyHealth>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -29,6 +31,11 @@ public class EnemyMovement : MonoBehaviour
         if (enemyHealth.currentHealth > 0 && playerHealth.currentHealth > 0)
         {
             nav.SetDestination(player.position);
+        }
+        else
+        {
+            anim.SetBool("Player Dead", true);
+            nav.enabled = false;
         }
     }
 }
