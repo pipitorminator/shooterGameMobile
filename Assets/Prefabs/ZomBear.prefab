@@ -281,10 +281,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de6b1fe975185af4e908dbcd1fd9dd96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 40
+  startingHealth: 20
   currentHealth: 0
   sinkingSpeed: 2.5
-  scoreValue: 10
+  scoreValue: 15
   deathSound: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
   hurtSound: {fileID: 8300000, guid: 1d4840678e677424b8921716c72397ea, type: 3}
 --- !u!82 &9004101555367490495
@@ -408,7 +408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackRate: 1
-  damage: 5
+  damage: 8
   damageImpact: {fileID: 0}
 --- !u!1001 &7250410837105390124
 PrefabInstance:

@@ -24,8 +24,20 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var horizontal = joystickMove.Horizontal;
-        var vertical = joystickMove.Vertical;
+        var horizontal = 0f;
+        var vertical = 0f;
+
+
+        if (Application.isMobilePlatform)
+        {
+            horizontal = joystickMove.Horizontal;
+            vertical = joystickMove.Vertical;
+        }
+        else
+        {
+            horizontal = Input.GetAxis("Horizontal");
+            vertical = Input.GetAxis("Vertical");
+        }
 
         var rotHorizontal = joystickRotate.Horizontal;
         var rotVertical = joystickRotate.Vertical;

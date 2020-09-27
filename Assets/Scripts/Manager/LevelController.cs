@@ -41,6 +41,13 @@ public class LevelController : MonoBehaviour
 
     public void ReloadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LoadingData.sceneToLoad = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(2);
+    }
+
+    public void GoToMainMenu()
+    {
+        LoadingData.sceneToLoad = 0;
+        SceneManager.LoadScene(2);
     }
 }
