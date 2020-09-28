@@ -9,14 +9,20 @@ public class PlayerMovement : MonoBehaviour
     public float speed = 6;
     public FixedJoystick joystickMove;
     public FixedJoystick joystickRotate;
+    public FixedJoystick BombJoystick;
 
     private Vector3 movement;
     private Rigidbody rb;
     private Animator animator;
     private PlayerShooting playerShooting;
 
+    public Rigidbody bombArea;
+    public float range;
+    private Vector3 bombAreaMovement;
+
     private void Awake()
     {
+        Time.timeScale = 1;
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         playerShooting = GetComponentInChildren<PlayerShooting>();
@@ -42,10 +48,14 @@ public class PlayerMovement : MonoBehaviour
         var rotHorizontal = joystickRotate.Horizontal;
         var rotVertical = joystickRotate.Vertical;
 
+        var bombHorizontal = BombJoystick.Horizontal;
+        var bombVertical = BombJoystick.Vertical;
 
         Move(horizontal, vertical);
 
         Turning(rotHorizontal, rotVertical);
+
+        MoveBombArea(bombHorizontal, bombVertical);
 
         Animating(horizontal, vertical);
     }
@@ -57,6 +67,23 @@ public class PlayerMovement : MonoBehaviour
         movement = movement.normalized * (speed * Time.deltaTime);
 
         rb.MovePosition((transform.position + movement));
+    }
+
+    void MoveBombArea(float horizontal, float vertical)
+    {
+        if (horizontal == 0 && vertical == 0)
+        {
+            bombArea.gameObject.SetActive(false);
+            return;
+        }
+
+        bombArea.gameObject.SetActive(true);
+
+        bombAreaMovement.Set(horizontal, 0, vertical);
+
+        bombAreaMovement = bombAreaMovement * range;
+
+        bombArea.MovePosition(transform.position + bombAreaMovement);
     }
 
     void Turning(float horizontal, float vertical)

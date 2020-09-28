@@ -10,6 +10,7 @@ public class LoadScene : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         sceneLoad = SceneManager.LoadSceneAsync(LoadingData.sceneToLoad);
     }
 
