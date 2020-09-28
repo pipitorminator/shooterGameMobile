@@ -23,6 +23,8 @@ public class PlayerShooting : MonoBehaviour
     private Text bombImageText;
     public float bombCoolDown = 10;
     private float bombTimer;
+    public GameObject throwBombArea;
+    public float bombTime = 1f;
 
     private float timer;
     private Light gunLight;
@@ -77,6 +79,28 @@ public class PlayerShooting : MonoBehaviour
         bombImageText.enabled = false;
     }
 
+    Vector3 CalculateVelocity(Vector3 origin, Vector3 target, float time)
+    {
+        //define distance x and y
+        Vector3 distance = target - origin;
+        Vector3 distanceXZ = distance;
+        distanceXZ.y = 0f;
+
+        //create a float that represent our distance
+        float dY = distance.y;
+        float dXZ = distanceXZ.magnitude;
+
+        //Create our velocity on X and Y
+        float velocityXZ = dXZ / time;
+        float velocityY = dY / time + 0.5f * Mathf.Abs(Physics.gravity.y) * time;
+
+        //Calculate velocity on X and put velocity on Y
+        Vector3 velocity = distanceXZ.normalized;
+        velocity *= velocityXZ;
+        velocity.y = velocityY;
+
+        return velocity;
+    }
 
     public void bomb()
     {
@@ -91,9 +115,11 @@ public class PlayerShooting : MonoBehaviour
         }
 
         bombTimer = 0;
+
+        Vector3 objectVelocity = CalculateVelocity(transform.position, throwBombArea.transform.position, bombTime);
+
         Rigidbody newBomb = Instantiate(bombPrefab, transform.position, Quaternion.identity);
-        newBomb.AddForce(transform.forward * bombImpulse.x, ForceMode.Impulse);
-        newBomb.AddForce(transform.up * bombImpulse.y, ForceMode.Impulse);
+        newBomb.velocity = objectVelocity;
     }
 
     public void Shoot()

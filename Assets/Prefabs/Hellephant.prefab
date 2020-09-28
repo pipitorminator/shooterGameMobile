@@ -284,7 +284,7 @@ MonoBehaviour:
   startingHealth: 100
   currentHealth: 0
   sinkingSpeed: 2.5
-  scoreValue: 20
+  scoreValue: 50
   deathSound: {fileID: 8300000, guid: 8c615fd0429f34edf85539d70279360d, type: 3}
   hurtSound: {fileID: 8300000, guid: fce027b40770a44298a6f5a4233bfb04, type: 3}
 --- !u!82 &327426222413403785
