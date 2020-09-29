@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
 
     public Text scoreText;
 
+    public Text GameOverScoreText;
+
     private int score;
 
     public Animator gameOverCanvas;
@@ -31,6 +33,21 @@ public class LevelController : MonoBehaviour
     public void GameOver()
     {
         gameOverCanvas.SetTrigger("GameOver");
+        int record = 0;
+        if (GameManager.instance)
+        {
+            GameManager.instance.totalPoints += score;
+            PlayerPrefs.SetInt("TotalPoints", score);
+            if (score > GameManager.instance.scoreRecord)
+            {
+                GameManager.instance.scoreRecord = score;
+            }
+
+            record = GameManager.instance.scoreRecord;
+            PlayerPrefs.SetInt("ScoreRecord", record);
+        }
+
+        GameOverScoreText.text = "Pontos: " + score + "\nRecord: " + record;
     }
 
     public void UpdateScore(int amount)
