@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        totalPoints = PlayerPrefs.GetInt("TotalPoints");
-        scoreRecord = PlayerPrefs.GetInt("ScoreRecord");
+        totalPoints = PlayerPrefs.GetInt(PlayerPrefsConstants.TotalPoints);
+        scoreRecord = PlayerPrefs.GetInt(PlayerPrefsConstants.ScoreRecord);
     }
 }

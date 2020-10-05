@@ -37,14 +37,14 @@ public class LevelController : MonoBehaviour
         if (GameManager.instance)
         {
             GameManager.instance.totalPoints += score;
-            PlayerPrefs.SetInt("TotalPoints", score);
+            PlayerPrefs.SetInt(PlayerPrefsConstants.TotalPoints, score);
             if (score > GameManager.instance.scoreRecord)
             {
                 GameManager.instance.scoreRecord = score;
             }
 
             record = GameManager.instance.scoreRecord;
-            PlayerPrefs.SetInt("ScoreRecord", record);
+            PlayerPrefs.SetInt(PlayerPrefsConstants.ScoreRecord, record);
         }
 
         GameOverScoreText.text = "Pontos: " + score + "\nRecord: " + record;
