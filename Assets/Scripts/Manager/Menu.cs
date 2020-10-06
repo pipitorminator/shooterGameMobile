@@ -10,4 +10,10 @@ public class Menu : MonoBehaviour
         LoadingData.sceneToLoad = 1;
         SceneManager.LoadScene(2);
     }
+
+    public void Online()
+    {
+        LoadingData.sceneToLoad = 3;
+        SceneManager.LoadScene(2);
+    }
 }
