@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class MultiplayerManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public NetworkController network;
 
-    // Update is called once per frame
-    void Update()
+    public void createRoom()
     {
-        
+        network.CreateRoom();
     }
+    
 }
