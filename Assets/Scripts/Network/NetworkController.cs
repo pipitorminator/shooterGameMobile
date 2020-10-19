@@ -15,6 +15,7 @@ public class NetworkController : MonoBehaviourPunCallbacks
     public GameObject alertModal;
 
     public GameObject loadingServerCanvas;
+    public GameObject loadingLevelCanvas;
     public GameObject menuCanvas;
     public GameObject roomCanvas;
 
@@ -52,6 +53,11 @@ public class NetworkController : MonoBehaviourPunCallbacks
             TypedLobby.Default);
     }
 
+    public void StartGame()
+    {
+        PhotonNetwork.LoadLevel(1);
+    }
+
     public override void OnCreatedRoom()
     {
         Debug.Log("conectado na sala");
@@ -87,11 +93,5 @@ public class NetworkController : MonoBehaviourPunCallbacks
     {
         menuCanvas.SetActive(true);
         roomCanvas.SetActive(false);
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }
