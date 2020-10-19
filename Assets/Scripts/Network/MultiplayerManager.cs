@@ -10,5 +10,9 @@ public class MultiplayerManager : MonoBehaviour
     {
         network.CreateRoom();
     }
-    
+
+    public void startGame()
+    {
+        network.StartGame();
+    }
 }
